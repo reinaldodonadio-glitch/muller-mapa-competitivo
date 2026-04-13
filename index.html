@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa Competitivo — Muller Imóveis RJ</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;700&family=Playfair+Display:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #C6966D;
+    --gold-light: #edbc91;
+    --gold-dark: #906037;
+    --black: #000000;
+    --white: #FFFFFF;
+    --gray-light: #EFEFEF;
+    --gray-mid: #B5B5B5;
+    --gray-dark: #3D3D3D;
+    --near-black: #1c1c1c;
+  }
+  body { font-family: 'Kanit', sans-serif; font-weight: 300; background: var(--white); color: var(--near-black); line-height: 1.6; }
+
+  /* CAPA */
+  .cover { background: var(--black); color: var(--white); min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 80px; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; top: 0; right: 0; width: 40%; height: 100%; background: linear-gradient(180deg, #b18254 0%, #c39669 100%); opacity: 0.12; }
+  .cover-label { font-family: 'Kanit', sans-serif; font-weight: 200; font-size: 0.875rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  .cover h1 { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; max-width: 700px; margin-bottom: 24px; }
+  .cover h1 span { color: var(--gold); }
+  .cover-sub { font-weight: 200; font-size: 1.1rem; color: var(--gray-mid); max-width: 500px; margin-bottom: 48px; }
+  .cover-meta { display: flex; gap: 48px; border-top: 1px solid rgba(198,150,109,0.3); padding-top: 32px; width: 100%; max-width: 640px; flex-wrap: wrap; }
+  .cover-meta-item label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 4px; }
+  .cover-meta-item span { font-size: 1rem; font-weight: 300; color: var(--white); }
+  .brand-tag { position: absolute; top: 48px; right: 80px; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--gold); letter-spacing: 1px; }
+
+  /* SEÇÕES */
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  .sec { padding: 80px; }
+  .sec-alt { background: var(--gray-light); }
+  .sec-dark { background: var(--near-black); color: var(--white); }
+  .sec-black { background: var(--black); color: var(--white); }
+
+  .sec-label { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 300; }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .sec-title span { color: var(--gold); }
+  .sec-desc { color: var(--gray-dark); font-weight: 300; max-width: 640px; margin-bottom: 48px; font-size: 1.05rem; }
+  .sec-dark .sec-desc, .sec-black .sec-desc { color: var(--gray-mid); }
+
+  /* MÉTRICAS */
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .metric-card { background: var(--white); border: 1px solid #e0e0e0; border-top: 3px solid var(--gold); padding: 32px 28px; }
+  .metric-card.dark { background: var(--black); border-top-color: var(--gold); }
+  .metric-number { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+  .metric-label { font-size: 0.85rem; font-weight: 300; color: var(--gray-dark); text-transform: uppercase; letter-spacing: 1px; line-height: 1.4; }
+  .metric-card.dark .metric-label { color: var(--gray-mid); }
+  .metric-sub { font-size: 0.8rem; color: var(--gray-mid); margin-top: 8px; }
+
+  /* TABELA */
+  .table-wrap { overflow-x: auto; margin-top: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  thead th { background: var(--black); color: var(--white); padding: 14px 20px; text-align: left; font-weight: 300; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; }
+  thead th:first-child { color: var(--gold); }
+  tbody tr { border-bottom: 1px solid var(--gray-light); }
+  tbody tr:hover { background: #faf8f5; }
+  tbody td { padding: 14px 20px; vertical-align: middle; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 2px; font-size: 0.73rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .badge-ok     { background: #e8f5e9; color: #2e7d32; }
+  .badge-alert  { background: #fce4ec; color: #c62828; }
+  .badge-warn   { background: #fff8e1; color: #e65100; }
+  .badge-purple { background: #f3e5f5; color: #6a1b9a; }
+
+  /* ZONAS DE SOMBRA */
+  .shadow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .shadow-card { border: 1px solid var(--gray-light); border-left: 4px solid var(--gold); padding: 24px; background: var(--white); }
+  .shadow-card h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+  .shadow-card .nbhd { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .shadow-card .desc { font-size: 0.875rem; color: var(--gray-dark); font-weight: 300; line-height: 1.5; }
+  .shadow-card .count { margin-top: 12px; font-size: 0.78rem; color: var(--gray-mid); }
+  .shadow-card .count strong { color: var(--gold-dark); }
+  .shadow-card.recreio { border-left-color: #c62828; }
+  .shadow-card.mista   { border-left-color: #e65100; }
+
+  /* TERRITÓRIO */
+  .territory-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
+  .tc { padding: 28px; background: var(--white); }
+  .tc.forte  { border-top: 3px solid #2e7d32; }
+  .tc.mista  { border-top: 3px solid var(--gold); }
+  .tc.sombra { border-top: 3px solid #c62828; }
+  .tc h4 { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+  .tc.forte h4  { color: #2e7d32; }
+  .tc.mista h4  { color: var(--gold-dark); }
+  .tc.sombra h4 { color: #c62828; }
+  .tc ul { list-style: none; }
+  .tc ul li { font-size: 0.875rem; color: var(--gray-dark); padding: 5px 0; border-bottom: 1px solid var(--gray-light); font-weight: 300; }
+  .tc ul li:last-child { border-bottom: none; }
+
+  /* OPORTUNIDADES */
+  .opp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .opp-card { background: rgba(198,150,109,0.08); border: 1px solid rgba(198,150,109,0.25); padding: 32px; }
+  .opp-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 800; color: rgba(198,150,109,0.25); line-height: 1; margin-bottom: 12px; }
+  .opp-card h4 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--gold-light); margin-bottom: 10px; }
+  .opp-card p { font-size: 0.9rem; color: var(--gray-mid); font-weight: 300; line-height: 1.6; }
+
+  /* IA */
+  .ia-box { background: var(--near-black); border: 1px solid rgba(198,150,109,0.35); padding: 56px; max-width: 900px; margin: 0 auto; }
+  .ia-box .eyebrow { font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .ia-box h3 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--white); margin-bottom: 20px; font-weight: 700; line-height: 1.2; }
+  .ia-box > p { color: var(--gray-mid); font-weight: 300; line-height: 1.7; margin-bottom: 40px; font-size: 1rem; }
+  .ia-items { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .ia-item { border-left: 2px solid var(--gold); padding-left: 16px; }
+  .ia-item strong { display: block; font-size: 0.9rem; color: var(--gold-light); margin-bottom: 4px; font-weight: 700; }
+  .ia-item span { font-size: 0.82rem; color: var(--gray-mid); font-weight: 300; line-height: 1.5; }
+
+  /* INSIGHT BOX */
+  .insight-box { background: var(--black); color: var(--white); padding: 32px 40px; border-left: 4px solid var(--gold); margin: 40px 0; }
+  .insight-box p { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; line-height: 1.6; }
+  .insight-box p span { color: var(--gold); }
+
+  /* LEGENDA */
+  .legend { display: flex; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--gray-dark); font-weight: 300; }
+  .legend-dot { width: 12px; height: 12px; flex-shrink: 0; }
+  .ld-barra   { background: var(--gold); }
+  .ld-recreio { background: #c62828; }
+  .ld-mista   { background: #e65100; }
+
+  /* FOOTER */
+  .footer { background: var(--black); padding: 40px 80px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(198,150,109,0.2); flex-wrap: wrap; gap: 20px; }
+  .footer-brand { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.1rem; }
+  .footer-note { font-size: 0.72rem; color: var(--gray-mid); font-weight: 200; text-align: right; line-height: 1.6; }
+
+  @media (max-width: 768px) {
+    .cover, .sec { padding: 40px 24px; }
+    .cover-meta { flex-direction: column; gap: 20px; }
+    .brand-tag { top: 24px; right: 24px; }
+    .territory-grid { grid-template-columns: 1fr; }
+    .ia-items { grid-template-columns: 1fr; }
+    .footer { padding: 32px 24px; }
+    .footer-note { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<section class="cover">
+  <div class="brand-tag">Muller Imóveis RJ</div>
+  <div class="cover-label">Inteligência Competitiva — Abril 2026</div>
+  <h1>Onde estão os<br><span>concorrentes</span> —<br>e onde não estão</h1>
+  <p class="cover-sub">
+    Um mapeamento completo das imobiliárias que disputam o mesmo território da Muller: quais condomínios eles dominam, onde existem brechas, e onde a Muller tem vantagem real.
+  </p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <label>Preparado por</label>
+      <span>Reinaldo Donadio</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Concorrentes analisados</label>
+      <span>Sentinelli e Sobral · Judice & Araújo</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Fonte</label>
+      <span>Dados públicos dos sites — Abr/2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- RESUMO EXECUTIVO -->
+<div class="sec-alt sec">
+<div class="wrap">
+  <div class="sec-label">O que encontramos</div>
+  <div class="sec-title" style="margin-bottom:40px;">3 números que <span>mudam a conversa</span></div>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-number">207</div>
+      <div class="metric-label">Imóveis à venda da Judice & Araújo<br>só na Barra da Tijuca</div>
+      <div class="metric-sub">Concorrente direto, mesmo perfil de cliente</div>
+    </div>
+    <div class="metric-card dark">
+      <div class="metric-number">1</div>
+      <div class="metric-label">Imóvel à venda da Judice & Araújo<br>no Recreio dos Bandeirantes</div>
+      <div class="metric-sub" style="color:#555">O Recreio é território quase sem disputa</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-number">R$30M+</div>
+      <div class="metric-label">Menor preço dos imóveis<br>da Sentinelli e Sobral</div>
+      <div class="metric-sub">Segmento diferente — não disputa o mesmo cliente</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-number">15+</div>
+      <div class="metric-label">Condomínios com presença ativa<br>dos concorrentes e sem Muller</div>
+      <div class="metric-sub">Barra, Recreio e zona de transição</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PANORAMA COMPETITIVO -->
+<div class="sec">
+<div class="wrap">
+  <div class="sec-label">Panorama Competitivo</div>
+  <div class="sec-title">Quem disputa o <span>mesmo território</span></div>
+  <p class="sec-desc">
+    Dois concorrentes no radar. Perfis muito diferentes — e isso muda completamente a estratégia para cada um.
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Dimensão</th>
+          <th>Muller Imóveis RJ</th>
+          <th>Judice & Araújo</th>
+          <th>Sentinelli e Sobral</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Segmento</strong></td>
+          <td>Alto padrão residencial</td>
+          <td>Alto padrão residencial</td>
+          <td>Ultra-luxo (R$30M+)</td>
+        </tr>
+        <tr>
+          <td><strong>Faixa de preço — Barra</strong></td>
+          <td>~R$ 2,9M a R$ 6,1M</td>
+          <td>R$ 1,4M a R$ 6,5M</td>
+          <td>R$ 31M a R$ 55M</td>
+        </tr>
+        <tr>
+          <td><strong>Imóveis à venda — Barra da Tijuca</strong></td>
+          <td><span class="badge badge-warn">Em crescimento</span></td>
+          <td><span class="badge badge-alert">207 imóveis ativos</span></td>
+          <td><span class="badge badge-purple">0 na faixa padrão</span></td>
+        </tr>
+        <tr>
+          <td><strong>Imóveis à venda — Recreio</strong></td>
+          <td><span class="badge badge-ok">Território dominante</span></td>
+          <td><span class="badge badge-ok">Apenas 1 imóvel</span></td>
+          <td><span class="badge badge-ok">Nenhum imóvel</span></td>
+        </tr>
+        <tr>
+          <td><strong>Áreas de atuação</strong></td>
+          <td>Barra · Recreio · Joá · Itanhangá · São Conrado</td>
+          <td>Foco concentrado na Barra</td>
+          <td>Banco com 200+ condomínios, sem oferta ativa local</td>
+        </tr>
+        <tr>
+          <td><strong>Risco real para a Muller</strong></td>
+          <td>—</td>
+          <td><span class="badge badge-alert">ALTO — mesmo cliente</span></td>
+          <td><span class="badge badge-ok">BAIXO — outro segmento</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="insight-box">
+    <p>
+      A Sentinelli não compete com a Muller — são clientes completamente diferentes. O adversário que importa é a <span>Judice & Araújo</span>: 207 imóveis na Barra, mesmo ticket, mesma região. No Recreio, a Muller está praticamente sozinha.
+    </p>
+  </div>
+</div>
+</div>
+
+<!-- TERRITÓRIO -->
+<div class="sec-alt sec">
+<div class="wrap">
+  <div class="sec-label">Análise Territorial</div>
+  <div class="sec-title">Bairro a bairro: <span>quem domina onde</span></div>
+  <p class="sec-desc">
+    Cada região tem uma dinâmica diferente. Saber onde cada concorrente está — e onde não está — define a prioridade de ação da Muller.
+  </p>
+  <div class="territory-grid">
+    <div class="tc forte">
+      <h4>✔ Território Forte — Muller</h4>
+      <ul>
+        <li>Recreio dos Bandeirantes</li>
+        <li>Quintas do Pontal</li>
+        <li>Parque das Palmeiras</li>
+        <li>Village Marapendi</li>
+        <li>Crystal Lake (Recreio)</li>
+        <li>Américas Club Residence</li>
+        <li>American Village</li>
+      </ul>
+    </div>
+    <div class="tc mista">
+      <h4>⟳ Zona de Transição (disputada)</h4>
+      <ul>
+        <li>Rio Mar</li>
+        <li>Blue Houses</li>
+        <li>Crystal Lake (Barra)</li>
+        <li>Alameda dos Eucaliptos</li>
+        <li>Le Parc</li>
+        <li>Alvorada Private</li>
+      </ul>
+    </div>
+    <div class="tc sombra">
+      <h4>✗ Zonas de Sombra (oportunidade)</h4>
+      <ul>
+        <li>Jardim Oceânico</li>
+        <li>Itaúna Gold</li>
+        <li>Santa Mônica Club</li>
+        <li>Novo Leblon</li>
+        <li>London Green</li>
+        <li>Santa Helena</li>
+        <li>Alphaville</li>
+        <li>Golden Green</li>
+        <li>Le Quartier Residences</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ZONAS DE SOMBRA -->
+<div class="sec">
+<div class="wrap">
+  <div class="sec-label">Zonas de Sombra</div>
+  <div class="sec-title">Condomínios onde os concorrentes <span>estão ativos</span> e a Muller não</div>
+  <p class="sec-desc">
+    Condomínios com imóveis anunciados pelos concorrentes, transações recentes comprovadas — e ausência digital da Muller no portfólio visível.
+  </p>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot ld-barra"></div> Barra da Tijuca</div>
+    <div class="legend-item"><div class="legend-dot ld-recreio"></div> Recreio dos Bandeirantes</div>
+    <div class="legend-item"><div class="legend-dot ld-mista"></div> Zona de Transição Barra–Recreio</div>
+  </div>
+
+  <div class="shadow-grid">
+
+    <!-- BARRA -->
+    <div class="shadow-card">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Jardim Oceânico</h4>
+      <p class="desc">O condomínio mais ativo nos portfólios dos concorrentes — aparece repetidas vezes nos primeiros resultados da Judice. Apartamentos e coberturas de 3 a 4 quartos entre R$1,6M e R$5,8M.</p>
+      <p class="count">Judice: <strong>5+ imóveis anunciados</strong> · Muller: <strong>sem presença identificada</strong></p>
+    </div>
+
+    <div class="shadow-card">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Itaúna Gold</h4>
+      <p class="desc">Apartamentos de 3 quartos com ticket de R$3,3M — perfil exato do cliente Muller. Condomínio fechado, alto padrão, na ABM Bosque Marapendi.</p>
+      <p class="count">Judice: <strong>imóvel ativo</strong> · Muller: <strong>sem presença identificada</strong></p>
+    </div>
+
+    <div class="shadow-card">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Santa Mônica Club</h4>
+      <p class="desc">Faixa de R$1,5M, alta rotatividade. Um dos condomínios mais buscados na Barra para quem está no primeiro imóvel de alto padrão.</p>
+      <p class="count">Judice: <strong>imóvel ativo</strong> · Muller: <strong>sem presença identificada</strong></p>
+    </div>
+
+    <div class="shadow-card">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Novo Leblon</h4>
+      <p class="desc">Coberturas de 3 quartos, ticket R$2,4M. Condomínio residencial na Barra com demanda constante por imóveis de cobertura.</p>
+      <p class="count">Judice: <strong>imóvel ativo</strong> · Muller: <strong>sem presença identificada</strong></p>
+    </div>
+
+    <div class="shadow-card">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Santa Helena</h4>
+      <p class="desc">Casa de 5 quartos com 637m² por R$6,5M — exatamente o perfil de produto que a Muller já vende. Presença neste condomínio seria imediata.</p>
+      <p class="count">Judice: <strong>imóvel ativo</strong> · Muller: <strong>sem presença identificada</strong></p>
+    </div>
+
+    <div class="shadow-card">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>London Green</h4>
+      <p class="desc">Apartamentos de 2 quartos em torno de R$1,4M. Atrai compradores que migram para a Barra — muitos se tornam clientes recorrentes buscando imóveis maiores.</p>
+      <p class="count">Judice: <strong>imóvel ativo</strong> · Muller: <strong>sem presença identificada</strong></p>
+    </div>
+
+    <div class="shadow-card">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Alphaville</h4>
+      <p class="desc">Condomínio fechado de altíssimo padrão. Casas com ticket entre R$15M e R$35M. Tanto Sentinelli quanto Judice têm presença — a Muller tem a expertise para atuar aqui.</p>
+      <p class="count">Sentinelli + Judice: <strong>ativos</strong> · Muller: <strong>sem presença identificada</strong></p>
+    </div>
+
+    <div class="shadow-card">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Golden Green</h4>
+      <p class="desc">Apartamentos de alto padrão com ticket entre R$32M e R$50M na Sentinelli. Condomínio de referência na Barra da Tijuca para clientes premium.</p>
+      <p class="count">Sentinelli: <strong>3 imóveis ativos</strong> · Muller: <strong>sem presença identificada</strong></p>
+    </div>
+
+    <!-- ZONA MISTA -->
+    <div class="shadow-card mista">
+      <div class="nbhd">Zona de Transição Barra–Recreio</div>
+      <h4>Alvorada Private</h4>
+      <p class="desc">Condomínio residencial na fronteira entre Barra e Recreio — Sentinelli tem este condomínio ativo em sua base. Vizinhança direta da área de atuação da Muller no Recreio.</p>
+      <p class="count">Sentinelli: <strong>presença cadastrada</strong> · Muller: <strong>sem presença identificada</strong></p>
+    </div>
+
+    <div class="shadow-card mista">
+      <div class="nbhd">Zona de Transição Barra–Recreio</div>
+      <h4>Le Parc</h4>
+      <p class="desc">Apartamentos de 3 quartos por R$2,5M na fronteira da zona mista. Um dos condomínios mais valorizados no corredor entre Barra e Recreio.</p>
+      <p class="count">Judice: <strong>imóvel ativo</strong> · Muller: <strong>presença limitada</strong></p>
+    </div>
+
+    <!-- RECREIO -->
+    <div class="shadow-card recreio">
+      <div class="nbhd">Recreio dos Bandeirantes</div>
+      <h4>Le Quartier Residences</h4>
+      <p class="desc">O único imóvel encontrado da Judice no Recreio — 3 quartos, 81m², R$680 mil. Sinaliza que a Judice está de olho no bairro. A entrada deles aqui é um sinal de alerta.</p>
+      <p class="count">Judice: <strong>imóvel ativo</strong> · Muller: <strong>verificar cobertura</strong></p>
+    </div>
+
+    <div class="shadow-card recreio">
+      <div class="nbhd">Recreio dos Bandeirantes</div>
+      <h4>Américas Club Residence</h4>
+      <p class="desc">Condomínio residencial no Recreio presente na base da Sentinelli. Mesmo que a Muller não tenha imóvel à venda agora, a ausência digital deixa o campo aberto para captação pelos concorrentes.</p>
+      <p class="count">Sentinelli: <strong>presença cadastrada</strong> · Muller: <strong>sem presença identificada</strong></p>
+    </div>
+
+  </div>
+
+  <div class="insight-box">
+    <p>
+      Estes 12 condomínios representam um potencial estimado de <span>R$ 30M a R$ 60M em VGV anual</span> que hoje passa pelos concorrentes — e não pela Muller.
+    </p>
+  </div>
+</div>
+</div>
+
+<!-- VANTAGEM RECREIO -->
+<div class="sec-dark sec">
+<div class="wrap">
+  <div class="sec-label">Vantagem Estratégica</div>
+  <div class="sec-title" style="color:var(--white);">O Recreio é <span>território Muller</span></div>
+  <p class="sec-desc">
+    A Judice tem 207 imóveis na Barra e apenas 1 no Recreio. A Sentinelli tem zero. Este é o bairro mais descontestado da análise — e a Muller já domina. Mas isso pode mudar.
+  </p>
+  <div class="opp-grid">
+    <div class="opp-card">
+      <div class="opp-num">01</div>
+      <h4>Captação exclusiva nos condomínios estratégicos</h4>
+      <p>Sem concorrente forte no Recreio, a Muller pode negociar acordos de exclusividade com síndicos e administradoras dos principais condomínios — fechando a porta de entrada para qualquer outro corretor.</p>
+    </div>
+    <div class="opp-card">
+      <div class="opp-num">02</div>
+      <h4>Blindar o território enquanto expande</h4>
+      <p>Com a nova unidade na Barra em processo de abertura, o risco é que o Recreio fique desatendido. Manter corretores dedicados e captação ativa garante que ninguém tome o espaço durante a transição.</p>
+    </div>
+    <div class="opp-card">
+      <div class="opp-num">03</div>
+      <h4>O Recreio alimenta a Barra</h4>
+      <p>Clientes que compram no Recreio recomendam para a rede da Barra. A reputação construída em um bairro gera leads espontâneos no outro — uma vantagem que a Judice não consegue replicar por ter chegado tarde.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- O QUE IA PODE FAZER -->
+<div class="sec-black sec">
+<div class="wrap">
+  <div class="sec-label">Próximo Nível</div>
+  <div class="sec-title" style="color:var(--white); margin-bottom:48px;">O que <span>inteligência artificial</span><br>pode mudar na operação da Muller</div>
+  <div class="ia-box">
+    <div class="eyebrow">Da análise à vantagem competitiva permanente</div>
+    <h3>Transformar dados públicos em decisões comerciais antes que os concorrentes percebam</h3>
+    <p>
+      O mapeamento que você está lendo é apenas a superfície do que é possível. Com IA integrada à operação, a Muller pode deixar de reagir ao mercado e começar a antecipá-lo — sabendo antes de qualquer concorrente onde estão os imóveis que vão entrar em rotatividade, quais condomínios estão sendo abordados pelos rivais e onde existe demanda não atendida.
+    </p>
+    <div class="ia-items">
+      <div class="ia-item">
+        <strong>Radar competitivo automático</strong>
+        <span>Monitorar os sites dos concorrentes toda semana e alertar a equipe quando um novo condomínio entrar no portfólio deles — antes que o corretor rival feche a exclusividade</span>
+      </div>
+      <div class="ia-item">
+        <strong>Mapa de oportunidades atualizado</strong>
+        <span>Uma visão sempre atualizada de quais condomínios têm brechas de cobertura, ranqueados por ticket médio e volume de vendas históricas — para o corretor saber exatamente onde agir</span>
+      </div>
+      <div class="ia-item">
+        <strong>Dossiê de conta por condomínio</strong>
+        <span>Antes de abordar um síndico, o corretor recebe um briefing completo: histórico de vendas, preço médio por m², concorrentes ativos e o argumento mais forte para apresentar a Muller</span>
+      </div>
+      <div class="ia-item">
+        <strong>Geração de leads por comportamento</strong>
+        <span>Identificar proprietários que estão nos estágios iniciais de decisão de venda — baseado em padrões de dados públicos — antes de qualquer outra imobiliária entrar em contato</span>
+      </div>
+      <div class="ia-item">
+        <strong>Inteligência de precificação</strong>
+        <span>Comparar imóveis similares nos condomínios concorrentes em tempo real — dando ao corretor o argumento mais preciso na hora de fechar o valor de captação</span>
+      </div>
+      <div class="ia-item">
+        <strong>Produtividade do time comercial</strong>
+        <span>Automatizar o preenchimento do CRM, a qualificação inicial de leads e o agendamento de visitas — liberando o corretor para o que gera VGV: atender e fechar</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">Muller Imóveis RJ</div>
+  <div class="footer-note">
+    Análise elaborada por Reinaldo Machado Donadio · Consultoria Estratégica<br>
+    Dados coletados via inteligência artificial — Abril 2026<br>
+    <span style="font-size:0.68rem;color:#444;">* Presença nos condomínios baseada em imóveis anunciados digitalmente. Pode não refletir portfólio completo de cada imobiliária.</span>
+  </div>
+</footer>
+
+</body>
+</html>
