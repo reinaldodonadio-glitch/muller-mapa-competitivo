@@ -1,1 +1,484 @@
-PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9InB0LUJSIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+TWFwYSBDb21wZXRpdGl2byDigJQgTXVsbGVyIEltw7N2ZWlzIFJKPC90aXRsZT4KPGxpbmsgaHJlZj0iaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1LYW5pdDp3Z2h0QDIwMDszMDA7NzAwJmZhbWlseT1QbGF5ZmFpcitEaXNwbGF5OndnaHRANDAwOzYwMDs4MDAmZGlzcGxheT1zd2FwIiByZWw9InN0eWxlc2hlZXQiPgo8c3R5bGU+CiAgKiwgKjo6YmVmb3JlLCAqOjphZnRlciB7IGJveC1zaXppbmc6IGJvcmRlci1ib3g7IG1hcmdpbjogMDsgcGFkZGluZzogMDsgfQogIDpyb290IHsKICAgIC0tZ29sZDogI0M2OTY2RDsKICAgIC0tZ29sZC1saWdodDogI2VkYmM5MTsKICAgIC0tZ29sZC1kYXJrOiAjOTA2MDM3OwogICAgLS1ibGFjazogIzAwMDAwMDsKICAgIC0td2hpdGU6ICNGRkZGRkY7CiAgICAtLWdyYXktbGlnaHQ6ICNFRUQ7CiAgICAtLWdyYXktbWlkOiAjQjVCNUI1OwogICAgLS1ncmF5LWRhcms6ICMzRDNEM0Q7CiAgICAtLW5lYXItYmxhY2s6ICMxYzFjMWM7CiAgfQogIGJvZHkgeyBmb250LWZhbWlseTogJ0thbml0Jywgc2Fucy1zZXJpZjsgZm9udC13ZWlnaHQ6IDMwMDsgYmFja2dyb3VuZDogdmFyKC0td2hpdGUpOyBjb2xvcjogdmFyKC0tbmVhci1ibGFjayk7IGxpbmUtaGVpZ2h0OiAxLjY7IH0KICAuY292ZXIgeyBiYWNrZ3JvdW5kOiB2YXIoLS1ibGFjayk7IGNvbG9yOiB2YXIoLS13aGl0ZSk7IG1pbi1oZWlnaHQ6IDEwMHZoOyBkaXNwbGF5OiBmbGV4OyBmbGV4LWRpcmVjdGlvbjogY29sdW1uOyBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7IHBhZGRpbmc6IDgwcHg7IHBvc2l0aW9uOiByZWxhdGl2ZTsgb3ZlcmZsb3c6IGhpZGRlbjsgfQogIC5jb3Zlcjo6YmVmb3JlIHsgY29udGVudDogJyc7IHBvc2l0aW9uOiBhYnNvbHV0ZTsgdG9wOiAwOyByaWdodDogMDsgd2lkdGg6IDQwJTsgaGVpZ2h0OiAxMDAlOyBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTgwZGVnLCAjYjE4MjU0IDAlLCAjYzM5NjY5IDEwMCUpOyBvcGFjaXR5OiAwLjEyOyB9CiAgLmNvdmVyLWxhYmVsIHsgZm9udC1mYW1pbHk6ICdLYW5pdCcsIHNhbnMtc2VyaWY7IGZvbnQtd2VpZ2h0OiAyMDA7IGZvbnQtc2l6ZTogMC44NzVyZW07IGxldHRlci1zcGFjaW5nOiA0cHg7IHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7IGNvbG9yOiB2YXIoLS1nb2xkKTsgbWFyZ2luLWJvdHRvbTogMjRweDsgfQogIC5jb3ZlciBoMSB7IGZvbnQtZmFtaWx5OiAnUGxheWZhaXIgRGlzcGxheScsIHNlcmlmOyBmb250LXdlaWdodDogODAwOyBmb250LXNpemU6IGNsYW1wKDIuNXJlbSwgNXZ3LCA0LjVyZW0pOyBsaW5lLWhlaWdodDogMS4xOyBtYXgtd2lkdGg6IDcwMHB4OyBtYXJnaW4tYm90dG9tOiAyNHB4OyB9CiAgLmNvdmVyIGgxIHNwYW4geyBjb2xvcjogdmFyKC0tZ29sZCk7IH0KICAuY292ZXItc3ViIHsgZm9udC13ZWlnaHQ6IDIwMDsgZm9udC1zaXplOiAxLjFyZW07IGNvbG9yOiB2YXIoLS1ncmF5LW1pZCk7IG1heC13aWR0aDogNTAwcHg7IG1hcmdpbi1ib3R0b206IDQ4cHg7IH0KICAuY292ZXItbWV0YSB7IGRpc3BsYXk6IGZsZXg7IGdhcDogNDhweDsgYm9yZGVyLXRvcDogMXB4IHNvbGlkIHJnYmEoMTk4LDE1MCwxMDksMC4zKTsgcGFkZGluZy10b3A6IDMycHg7IHdpZHRoOiAxMDAlOyBtYXgtd2lkdGg6IDY0MHB4OyBmbGV4LXdyYXA6IHdyYXA7IH0KICAuY292ZXItbWV0YS1pdGVtIGxhYmVsIHsgZm9udC1zaXplOiAwLjc1cmVtOyBsZXR0ZXItc3BhY2luZzogMnB4OyB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOyBjb2xvcjogdmFyKC0tZ29sZCk7IGRpc3BsYXk6IGJsb2NrOyBtYXJnaW4tYm90dG9tOiA0cHg7IH0KICAuY292ZXItbWV0YS1pdGVtIHNwYW4geyBmb250LXNpemU6IDFyZW07IGZvbnQtd2VpZ2h0OiAzMDA7IGNvbG9yOiB2YXIoLS13aGl0ZSk7IH0KICAuYnJhbmQtdGFnIHsgcG9zaXRpb246IGFic29sdXRlOyB0b3A6IDQ4cHg7IHJpZ2h0OiA4MHB4OyBmb250LWZhbWlseTogJ1BsYXlmYWlyIERpc3BsYXknLCBzZXJpZjsgZm9udC1zaXplOiAxLjFyZW07IGZvbnQtd2VpZ2h0OiA2MDA7IGNvbG9yOiB2YXIoLS1nb2xkKTsgbGV0dGVyLXNwYWNpbmc6IDFweDsgfQogIC53cmFwIHsgbWF4LXdpZHRoOiAxMjAwcHg7IG1hcmdpbjogMCBhdXRvOyB9CiAgLnNlYyB7IHBhZGRpbmc6IDgwcHg7IH0KICAuc2VjLWFsdCB7IGJhY2tncm91bmQ6IHZhcigtLWdyYXktbGlnaHQpOyB9CiAgLnNlYy1kYXJrIHsgYmFja2dyb3VuZDogdmFyKC0tbmVhci1ibGFjayk7IGNvbG9yOiB2YXIoLS13aGl0ZSk7IH0KICAuc2VjLWJsYWNrIHsgYmFja2dyb3VuZDogdmFyKC0tYmxhY2spOyBjb2xvcjogdmFyKC0td2hpdGUpOyB9CiAgLnNlYy1sYWJlbCB7IGZvbnQtc2l6ZTogMC43NXJlbTsgbGV0dGVyLXNwYWNpbmc6IDNweDsgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsgY29sb3I6IHZhcigtLWdvbGQpOyBtYXJnaW4tYm90dG9tOiAxMnB4OyBmb250LXdlaWdodDogMzAwOyB9CiAgLnNlYy10aXRsZSB7IGZvbnQtZmFtaWx5OiAnUGxheWZhaXIgRGlzcGxheScsIHNlcmlmOyBmb250LXNpemU6IGNsYW1wKDEuOHJlbSwgM3Z3LCAyLjhyZW0pOyBmb250LXdlaWdodDogNzAwOyBsaW5lLWhlaWdodDogMS4yOyBtYXJnaW4tYm90dG9tOiAxNnB4OyB9CiAgLnNlYy10aXRsZSBzcGFuIHsgY29sb3I6IHZhcigtLWdvbGQpOyB9CiAgLnNlYy1kZXNjIHsgY29sb3I6IHZhcigtLWdyYXktZGFyayk7IGZvbnQtd2VpZ2h0OiAzMDA7IG1heC13aWR0aDogNjQwcHg7IG1hcmdpbi1ib3R0b206IDQ4cHg7IGZvbnQtc2l6ZTogMS4wNXJlbTsgfQogIC5zZWMtZGFyayAuc2VjLWRlc2MsIC5zZWMtYmxhY2sgLnNlYy1kZXNjIHsgY29sb3I6IHZhcigtLWdyYXktbWlkKTsgfQogIC5tZXRyaWNzLWdyaWQgeyBkaXNwbGF5OiBncmlkOyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IHJlcGVhdChhdXRvLWZpdCwgbWlubWF4KDIyMHB4LCAxZnIpKTsgZ2FwOiAyNHB4OyB9CiAgLm1ldHJpYy1jYXJkIHsgYmFja2dyb3VuZDogdmFyKC0td2hpdGUpOyBib3JkZXI6IDFweCBzb2xpZCAjZTBlMGUwOyBib3JkZXItdG9wOiAzcHggc29saWQgdmFyKC0tZ29sZCk7IHBhZGRpbmc6IDMycHggMjhweDsgfQogIC5tZXRyaWMtY2FyZC5kYXJrIHsgYmFja2dyb3VuZDogdmFyKC0tYmxhY2spOyBib3JkZXItdG9wLWNvbG9yOiB2YXIoLS1nb2xkKTsgYm9yZGVyLWNvbG9yOiAjMzMzOyB9CiAgLm1ldHJpYy1udW1iZXIgeyBmb250LWZhbWlseTogJ1BsYXlmYWlyIERpc3BsYXknLCBzZXJpZjsgZm9udC1zaXplOiAyLjVyZW07IGZvbnQtd2VpZ2h0OiA4MDA7IGNvbG9yOiB2YXIoLS1nb2xkKTsgbGluZS1oZWlnaHQ6IDE7IG1hcmdpbi1ib3R0b206IDhweDsgfQogIC5tZXRyaWMtbGFiZWwgeyBmb250LXNpemU6IDAuODVyZW07IGZvbnQtd2VpZ2h0OiAzMDA7IGNvbG9yOiB2YXIoLS1ncmF5LWRhcmspOyB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOyBsZXR0ZXItc3BhY2luZzogMXB4OyBsaW5lLWhlaWdodDogMS40OyB9CiAgLm1ldHJpYy1jYXJkLmRhcmsgLm1ldHJpYy1sYWJlbCB7IGNvbG9yOiB2YXIoLS1ncmF5LW1pZCk7IH0KICAubWV0cmljLXN1YiB7IGZvbnQtc2l6ZTogMC44cmVtOyBjb2xvcjogdmFyKC0tZ3JheS1taWQpOyBtYXJnaW4tdG9wOiA4cHg7IH0KICAudGFibGUtd3JhcCB7IG92ZXJmbG93LXg6IGF1dG87IG1hcmdpbi10b3A6IDhweDsgfQogIHRhYmxlIHsgd2lkdGg6IDEwMCU7IGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7IGZvbnQtc2l6ZTogMC45MnJlbTsgfQogIHRoZWFkIHRoIHsgYmFja2dyb3VuZDogdmFyKC0tYmxhY2spOyBjb2xvcjogdmFyKC0td2hpdGUpOyBwYWRkaW5nOiAxNHB4IDIwcHg7IHRleHQtYWxpZ246IGxlZnQ7IGZvbnQtd2VpZ2h0OiAzMDA7IGZvbnQtc2l6ZTogMC43OHJlbTsgbGV0dGVyLXNwYWNpbmc6IDEuNXB4OyB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOyB9CiAgdGhlYWQgdGg6Zmlyc3QtY2hpbGQgeyBjb2xvcjogdmFyKC0tZ29sZCk7IH0KICB0Ym9keSB0ciB7IGJvcmRlci1ib3R0b206IDFweCBzb2xpZCB2YXIoLS1ncmF5LWxpZ2h0KTsgfQogIHRib2R5IHRyOmhvdmVyIHsgYmFja2dyb3VuZDogI2ZhZjhmNTsgfQogIHRib2R5IHRkIHsgcGFkZGluZzogMTRweCAyMHB4OyB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlOyB9CiAgLmJhZGdlIHsgZGlzcGxheTogaW5saW5lLWJsb2NrOyBwYWRkaW5nOiAzcHggMTBweDsgYm9yZGVyLXJhZGl1czogMnB4OyBmb250LXNpemU6IDAuNzNyZW07IGZvbnQtd2VpZ2h0OiA3MDA7IGxldHRlci1zcGFjaW5nOiAxcHg7IHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7IH0KICAuYmFkZ2Utb2sgICAgIHsgYmFja2dyb3VuZDogI2U4ZjVlOTsgY29sb3I6ICMyZTdkMzI7IH0KICAuYmFkZ2UtYWxlcnQgIHsgYmFja2dyb3VuZDogI2ZjZTRlYzsgY29sb3I6ICNjNjI4Mjg7IH0KICAuYmFkZ2Utd2FybiAgIHsgYmFja2dyb3VuZDogI2ZmZjhlMTsgY29sb3I6ICNlNjUxMDA7IH0KICAuYmFkZ2UtcHVycGxlIHsgYmFja2dyb3VuZDogI2YzZTVmNTsgY29sb3I6ICM2YTFiOWE7IH0KICAuc2hhZG93LWdyaWQgeyBkaXNwbGF5OiBncmlkOyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IHJlcGVhdChhdXRvLWZpbGwsIG1pbm1heCgyODBweCwgMWZyKSk7IGdhcDogMjBweDsgfQogIC5zaGFkb3ctY2FyZCB7IGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWdyYXktbGlnaHQpOyBib3JkZXItbGVmdDogNHB4IHNvbGlkIHZhcigtLWdvbGQpOyBwYWRkaW5nOiAyNHB4OyBiYWNrZ3JvdW5kOiB2YXIoLS13aGl0ZSk7IH0KICAuc2hhZG93LWNhcmQgaDQgeyBmb250LWZhbWlseTogJ1BsYXlmYWlyIERpc3BsYXknLCBzZXJpZjsgZm9udC1zaXplOiAxLjA1cmVtOyBmb250LXdlaWdodDogNjAwOyBtYXJnaW4tYm90dG9tOiA2cHg7IH0KICAuc2hhZG93LWNhcmQgLm5iaGQgeyBmb250LXNpemU6IDAuNzJyZW07IGxldHRlci1zcGFjaW5nOiAycHg7IHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7IGNvbG9yOiB2YXIoLS1nb2xkKTsgbWFyZ2luLWJvdHRvbTogMTBweDsgfQogIC5zaGFkb3ctY2FyZCAuZGVzYyB7IGZvbnQtc2l6ZTogMC44NzVyZW07IGNvbG9yOiB2YXIoLS1ncmF5LWRhcmspOyBmb250LXdlaWdodDogMzAwOyBsaW5lLWhlaWdodDogMS41OyB9CiAgLnNoYWRvdy1jYXJkIC5jb3VudCB7IG1hcmdpbi10b3A6IDEycHg7IGZvbnQtc2l6ZTogMC43OHJlbTsgY29sb3I6IHZhcigtLWdyYXktbWlkKTsgfQogIC5zaGFkb3ctY2FyZCAuY291bnQgc3Ryb25nIHsgY29sb3I6IHZhcigtLWdvbGQtZGFyayk7IH0KICAuc2hhZG93LWNhcmQucmVjcmVpbyB7IGJvcmRlci1sZWZ0LWNvbG9yOiAjYzYyODI4OyB9CiAgLnNoYWRvdy1jYXJkLm1pc3RhICAgeyBib3JkZXItbGVmdC1jb2xvcjogI2U2NTEwMDsgfQogIC5pbnNpZ2h0LWJveCB7IGJhY2tncm91bmQ6IHZhcigtLWJsYWNrKTsgY29sb3I6IHZhcigtLXdoaXRlKTsgcGFkZGluZzogMzJweCA0MHB4OyBib3JkZXItbGVmdDogNHB4IHNvbGlkIHZhcigtLWdvbGQpOyBtYXJnaW46IDQwcHggMDsgfQogIC5pbnNpZ2h0LWJveC1wIHsgZm9udC1mYW1pbHk6ICdQbGF5ZmFpciBEaXNwbGF5Jywgc2VyaWY7IGZvbnQtc2l6ZTogMS4ycmVtOyBmb250LXdlaWdodDogNDAwOyBsaW5lLWhlaWdodDogMS42OyB9CiAgLmluc2lnaHQtYm94LXAgc3BhbiB7IGNvbG9yOiB2YXIoLS1nb2xkKTsgfQogIC5sZWdlbmQgeyBkaXNwbGF5OiBmbGV4OyBnYXA6IDI0cHg7IG1hcmdpbi1ib3R0b206IDI0cHg7IGZsZXgtd3JhcDogd3JhcDsgfQogIC5sZWdlbmQtaXRlbSB7IGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IGdhcDogOHB4OyBmb250LXNpemU6IDAuOHJlbTsgY29sb3I6IHZhcigtLWdyYXktZGFyayk7IGZvbnQtd2VpZ2h0OiAzMDA7IH0KICAubGVnZW5kLWRvdCB7IHdpZHRoOiAxMnB4OyBoZWlnaHQ6IDEycHg7IGZsZXgtc2hyaW5rOiAwOyB9CiAgLmxkLWJhcnJhICAgeyBiYWNrZ3JvdW5kOiB2YXIoLS1nb2xkKTsgfQogIC5sZC1yZWNyZWlvIHsgYmFja2dyb3VuZDogI2M2MjgyODsgfQogIC5sZC1taXN0YSAgIHsgYmFja2dyb3VuZDogI2U2NTEwMDsgfQogIC5vcHAtZ3JpZCB7IGRpc3BsYXk6IGdyaWQ7IGdyaWQtdGVtcGxhdGUtY29sdW1uczogcmVwZWF0KGF1dG8tZml0LCBtaW5tYXgoMzAwcHgsIDFmcikpOyBnYXA6IDI0cHg7IH0KICAub3BwLWNhcmQgeyBiYWNrZ3JvdW5kOiByZ2JhKDE5OCwxNTAsMTA5LDAuMDgpOyBib3JkZXI6IDFweCBzb2xpZCByZ2JhKDE5OCwxNTAsMTA5LDAuMjUpOyBwYWRkaW5nOiAzMnB4OyB9CiAgLm9wcC1udW0geyBmb250LWZhbWlseTogJ1BsYXlmYWlyIERpc3BsYXknLCBzZXJpZjsgZm9udC1zaXplOiAzcmVtOyBmb250LXdlaWdodDogODAwOyBjb2xvcjogcmdiYSgxOTgsMTUwLDEwOSwwLjI1KTsgbGluZS1oZWlnaHQ6IDE7IG1hcmdpbi1ib3R0b206IDEycHg7IH0KICAub3BwLWNhcmQgaDQgeyBmb250LWZhbWlseTogJ1BsYXlmYWlyIERpc3BsYXknLCBzZXJpZjsgZm9udC1zaXplOiAxLjE1cmVtOyBjb2xvcjogdmFyKC0tZ29sZC1saWdodCk7IG1hcmdpbi1ib3R0b206IDEwcHg7IH0KICAub3BwLWNhcmQgcCB7IGZvbnQtc2l6ZTogMC45cmVtOyBjb2xvcjogdmFyKC0tZ3JheS1taWQpOyBmb250LXdlaWdodDogMzAwOyBsaW5lLWhlaWdodDogMS42OyB9CiAgLmlhLWJveCB7IGJhY2tncm91bmQ6IHZhcigtLW5lYXItYmxhY2spOyBib3JkZXI6IDFweCBzb2xpZCByZ2JhKDE5OCwxNTAsMTA5LDAuMzUpOyBwYWRkaW5nOiA1NnB4OyBtYXgtd2lkdGg6IDkwMHB4OyBtYXJnaW46IDAgYXV0bzsgfQogIC5pYS1ib3ggLmV5ZWJyb3cgeyBmb250LXNpemU6IDAuNzVyZW07IGxldHRlci1zcGFjaW5nOiA0cHg7IHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7IGNvbG9yOiB2YXIoLS1nb2xkKTsgbWFyZ2luLWJvdHRvbTogMjBweDsgfQogIC5pYS1ib3ggaDMgeyBmb250LWZhbWlseTogJ1BsYXlmYWlyIERpc3BsYXknLCBzZXJpZjsgZm9udC1zaXplOiAycmVtOyBjb2xvcjogdmFyKC0td2hpdGUpOyBtYXJnaW4tYm90dG9tOiAyMHB4OyBmb250LXdlaWdodDogNzAwOyBsaW5lLWhlaWdodDogMS4yOyB9CiAgLmlhLWJveCA+IHAgeyBjb2xvcjogdmFyKC0tZ3JheS1taWQpOyBmb250LXdlaWdodDogMzAwOyBsaW5lLWhlaWdodDogMS43OyBtYXJnaW4tYm90dG9tOiA0MHB4OyBmb250LXNpemU6IDFyZW07IH0KICAuaWEtaXRlbXMgeyBkaXNwbGF5OiBncmlkOyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnI7IGdhcDogMjBweDsgfQogIC5pYS1pdGVtIHsgYm9yZGVyLWxlZnQ6IDJweCBzb2xpZCB2YXIoLS1nb2xkKTsgcGFkZGluZy1sZWZ0OiAxNnB4OyB9CiAgLmlhLWl0ZW0gc3Ryb25nIHsgZGlzcGxheTogYmxvY2s7IGZvbnQtc2l6ZTogMC45cmVtOyBjb2xvcjogdmFyKC0tZ29sZC1saWdodCk7IG1hcmdpbi1ib3R0b206IDRweDsgZm9udC13ZWlnaHQ6IDcwMDsgfQogIC5pYS1pdGVtIHNwYW4geyBmb250LXNpemU6IDAuODJyZW07IGNvbG9yOiB2YXIoLS1ncmF5LW1pZCk7IGZvbnQtd2VpZ2h0OiAzMDA7IGxpbmUtaGVpZ2h0OiAxLjU7IH0KICAuZm9vdGVyIHsgYmFja2dyb3VuZDogdmFyKC0tYmxhY2spOyBwYWRkaW5nOiA0MHB4IDgwcHg7IGRpc3BsYXk6IGZsZXg7IGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2Vlbjsgb W...[truncated - content too large]
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa Competitivo — Muller Imóveis RJ</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;700&family=Playfair+Display:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #C6966D;
+    --gold-light: #edbc91;
+    --gold-dark: #906037;
+    --black: #000000;
+    --white: #FFFFFF;
+    --gray-light: #EFEFEF;
+    --gray-mid: #B5B5B5;
+    --gray-dark: #3D3D3D;
+    --near-black: #1c1c1c;
+  }
+  body { font-family: 'Kanit', sans-serif; font-weight: 300; background: var(--white); color: var(--near-black); line-height: 1.6; }
+  .cover { background: var(--black); color: var(--white); min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 80px; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; top: 0; right: 0; width: 40%; height: 100%; background: linear-gradient(180deg, #b18254 0%, #c39669 100%); opacity: 0.12; }
+  .cover-label { font-family: 'Kanit', sans-serif; font-weight: 200; font-size: 0.875rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  .cover h1 { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; max-width: 700px; margin-bottom: 24px; }
+  .cover h1 span { color: var(--gold); }
+  .cover-sub { font-weight: 200; font-size: 1.1rem; color: var(--gray-mid); max-width: 500px; margin-bottom: 48px; }
+  .cover-meta { display: flex; gap: 48px; border-top: 1px solid rgba(198,150,109,0.3); padding-top: 32px; width: 100%; max-width: 640px; flex-wrap: wrap; }
+  .cover-meta-item label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 4px; }
+  .cover-meta-item span { font-size: 1rem; font-weight: 300; color: var(--white); }
+  .brand-tag { position: absolute; top: 48px; right: 80px; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--gold); letter-spacing: 1px; }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  .sec { padding: 80px; }
+  .sec-alt { background: var(--gray-light); }
+  .sec-dark { background: var(--near-black); color: var(--white); }
+  .sec-black { background: var(--black); color: var(--white); }
+  .sec-label { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 300; }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .sec-title span { color: var(--gold); }
+  .sec-desc { color: var(--gray-dark); font-weight: 300; max-width: 640px; margin-bottom: 48px; font-size: 1.05rem; }
+  .sec-dark .sec-desc, .sec-black .sec-desc { color: var(--gray-mid); }
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .metric-card { background: var(--white); border: 1px solid #e0e0e0; border-top: 3px solid var(--gold); padding: 32px 28px; }
+  .metric-card.dark { background: var(--black); border-top-color: var(--gold); border-color: #333; }
+  .metric-number { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+  .metric-label { font-size: 0.85rem; font-weight: 300; color: var(--gray-dark); text-transform: uppercase; letter-spacing: 1px; line-height: 1.4; }
+  .metric-card.dark .metric-label { color: var(--gray-mid); }
+  .metric-sub { font-size: 0.8rem; color: var(--gray-mid); margin-top: 8px; }
+  .table-wrap { overflow-x: auto; margin-top: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  thead th { background: var(--black); color: var(--white); padding: 14px 20px; text-align: left; font-weight: 300; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; }
+  thead th:first-child { color: var(--gold); }
+  tbody tr { border-bottom: 1px solid var(--gray-light); }
+  tbody tr:hover { background: #faf8f5; }
+  tbody td { padding: 14px 20px; vertical-align: middle; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 2px; font-size: 0.73rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .badge-ok     { background: #e8f5e9; color: #2e7d32; }
+  .badge-alert  { background: #fce4ec; color: #c62828; }
+  .badge-warn   { background: #fff8e1; color: #e65100; }
+  .badge-purple { background: #f3e5f5; color: #6a1b9a; }
+  .shadow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .shadow-card { border: 1px solid var(--gray-light); border-left: 4px solid var(--gold); padding: 24px; background: var(--white); }
+  .shadow-card h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+  .shadow-card .nbhd { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .shadow-card .desc { font-size: 0.875rem; color: var(--gray-dark); font-weight: 300; line-height: 1.5; }
+  .shadow-card .count { margin-top: 12px; font-size: 0.78rem; color: var(--gray-mid); }
+  .shadow-card .count strong { color: var(--gold-dark); }
+  .shadow-card.recreio { border-left-color: #c62828; }
+  .shadow-card.mista   { border-left-color: #e65100; }
+  .insight-box { background: var(--black); color: var(--white); padding: 32px 40px; border-left: 4px solid var(--gold); margin: 40px 0; }
+  .insight-box p { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; line-height: 1.6; }
+  .insight-box p span { color: var(--gold); }
+  .legend { display: flex; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--gray-dark); font-weight: 300; }
+  .legend-dot { width: 12px; height: 12px; flex-shrink: 0; }
+  .ld-barra   { background: var(--gold); }
+  .ld-recreio { background: #c62828; }
+  .ld-mista   { background: #e65100; }
+  .opp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .opp-card { background: rgba(198,150,109,0.08); border: 1px solid rgba(198,150,109,0.25); padding: 32px; }
+  .opp-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 800; color: rgba(198,150,109,0.25); line-height: 1; margin-bottom: 12px; }
+  .opp-card h4 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--gold-light); margin-bottom: 10px; }
+  .opp-card p { font-size: 0.9rem; color: var(--gray-mid); font-weight: 300; line-height: 1.6; }
+  .ia-box { background: var(--near-black); border: 1px solid rgba(198,150,109,0.35); padding: 56px; max-width: 900px; margin: 0 auto; }
+  .ia-box .eyebrow { font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .ia-box h3 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--white); margin-bottom: 20px; font-weight: 700; line-height: 1.2; }
+  .ia-box > p { color: var(--gray-mid); font-weight: 300; line-height: 1.7; margin-bottom: 40px; font-size: 1rem; }
+  .ia-items { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .ia-item { border-left: 2px solid var(--gold); padding-left: 16px; }
+  .ia-item strong { display: block; font-size: 0.9rem; color: var(--gold-light); margin-bottom: 4px; font-weight: 700; }
+  .ia-item span { font-size: 0.82rem; color: var(--gray-mid); font-weight: 300; line-height: 1.5; }
+  .footer { background: var(--black); padding: 40px 80px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(198,150,109,0.2); flex-wrap: wrap; gap: 20px; }
+  .footer-brand { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.1rem; }
+  .footer-note { font-size: 0.72rem; color: var(--gray-mid); font-weight: 200; text-align: right; line-height: 1.6; }
+  .data-badge { display: inline-block; background: rgba(198,150,109,0.15); border: 1px solid rgba(198,150,109,0.4); color: var(--gold); font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; margin-left: 10px; vertical-align: middle; }
+  @media (max-width: 768px) {
+    .cover, .sec { padding: 40px 24px; }
+    .cover-meta { flex-direction: column; gap: 20px; }
+    .brand-tag { top: 24px; right: 24px; }
+    .ia-items { grid-template-columns: 1fr; }
+    .footer { padding: 32px 24px; }
+    .footer-note { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="brand-tag">Muller Imóveis RJ</div>
+  <div class="cover-label">Inteligência Competitiva — Abril 2026 <span class="data-badge">Dados reais — 2.978 imóveis raspados</span></div>
+  <h1>Onde estão os<br><span>concorrentes</span> —<br>e onde não estão</h1>
+  <p class="cover-sub">
+    Raspagem completa de 1.420 imóveis da Sentineli e 1.558 da Judice &amp; Araújo. Dados reais, coletados em abril de 2026 diretamente dos portfólios digitais.
+  </p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <label>Preparado por</label>
+      <span>Reinaldo Donadio</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Imóveis analisados</label>
+      <span>2.978 ativos mapeados</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Fonte</label>
+      <span>Raspagem direta — Abr/2026</span>
+    </div>
+  </div>
+</section>
+
+<div class="sec-alt sec">
+<div class="wrap">
+  <div class="sec-label">Números reais — não estimativas</div>
+  <div class="sec-title" style="margin-bottom:40px;">O que a raspagem <span>revelou</span></div>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-number">682</div>
+      <div class="metric-label">Imóveis da Sentineli<br>na Barra da Tijuca</div>
+      <div class="metric-sub">Faixa: R$ 0,1M – R$ 50M. 640 acima de R$1,5M</div>
+    </div>
+    <div class="metric-card dark">
+      <div class="metric-number">397</div>
+      <div class="metric-label" style="color:var(--gray-mid)">Imóveis da Sentineli<br>no Recreio dos Bandeirantes</div>
+      <div class="metric-sub">Faixa: R$ 0,6M – R$ 15M. 225 acima de R$1,5M</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-number">1.558</div>
+      <div class="metric-label">Imóveis da Judice &amp; Araújo<br>à venda no total</div>
+      <div class="metric-sub">Foco histórico: Barra da Tijuca e Zona Sul</div>
+    </div>
+    <div class="metric-card dark">
+      <div class="metric-number">226</div>
+      <div class="metric-label" style="color:var(--gray-mid)">Condomínios distintos<br>nos territórios Muller</div>
+      <div class="metric-sub">Com presença ativa da Sentineli</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="sec">
+<div class="wrap">
+  <div class="sec-label">Panorama Competitivo</div>
+  <div class="sec-title">Quem disputa o <span>mesmo território</span></div>
+  <p class="sec-desc">Com dados reais de raspagem, o quadro competitivo é mais complexo do que parecia. A Sentineli não é só ultra-luxo — ela tem 225 imóveis acima de R$1,5M no Recreio.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Dimensão</th>
+          <th>Muller Imóveis RJ</th>
+          <th>Sentineli e Sobral</th>
+          <th>Judice &amp; Araújo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Total imóveis à venda</strong></td>
+          <td>Portfólio interno (Kommo)</td>
+          <td><span class="badge badge-alert">1.420 imóveis</span></td>
+          <td><span class="badge badge-alert">1.558 imóveis</span></td>
+        </tr>
+        <tr>
+          <td><strong>Barra da Tijuca</strong></td>
+          <td><span class="badge badge-warn">Em crescimento</span></td>
+          <td><span class="badge badge-alert">682 imóveis</span></td>
+          <td><span class="badge badge-alert">Foco principal</span></td>
+        </tr>
+        <tr>
+          <td><strong>Recreio dos Bandeirantes</strong></td>
+          <td><span class="badge badge-ok">Território dominante</span></td>
+          <td><span class="badge badge-alert">397 imóveis</span></td>
+          <td><span class="badge badge-ok">Presença mínima</span></td>
+        </tr>
+        <tr>
+          <td><strong>Condomínio mais ativo</strong></td>
+          <td>—</td>
+          <td>Jardim Oceânico (55 imóveis)</td>
+          <td>Barra da Tijuca (histórico)</td>
+        </tr>
+        <tr>
+          <td><strong>Ticket na faixa Muller (R$1,5M+)</strong></td>
+          <td>R$ 2,9M – R$ 6,1M</td>
+          <td>Barra: R$ 7.6M médio · Recreio: R$ 3.6M médio</td>
+          <td>R$ 1,4M – R$ 6,5M</td>
+        </tr>
+        <tr>
+          <td><strong>Risco real para Muller</strong></td>
+          <td>—</td>
+          <td><span class="badge badge-alert">ALTO — Recreio e Barra</span></td>
+          <td><span class="badge badge-alert">ALTO — Barra, cresce</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="insight-box">
+    <p>
+      A Sentineli não é só ultra-luxo. Ela tem <span>225 imóveis acima de R$1,5M no Recreio</span> e <span>640 na Barra</span> — território direto da Muller. O Recreio ainda é dominado pela Muller, mas a competição é real.
+    </p>
+  </div>
+</div>
+</div>
+
+<div class="sec-alt sec">
+<div class="wrap">
+  <div class="sec-label">Radar dos Concorrentes — Sentineli e Sobral</div>
+  <div class="sec-title">Top condomínios onde a <span>Sentineli está ativa</span></div>
+  <p class="sec-desc">Condomínios com maior número de imóveis anunciados pela Sentineli nos territórios de atuação da Muller. Dados reais de raspagem — Abril 2026.</p>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot ld-barra"></div> Barra da Tijuca</div>
+    <div class="legend-item"><div class="legend-dot ld-recreio"></div> Recreio dos Bandeirantes</div>
+    <div class="legend-item"><div class="legend-dot ld-mista"></div> Zona de Transição</div>
+  </div>
+
+  <p style="font-size:0.85rem;color:var(--gray-dark);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">Barra da Tijuca</p>
+  <div class="shadow-grid" style="margin-bottom:40px;">
+    
+    <div class="shadow-card ">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Jardim Oceânico</h4>
+      <p class="desc">34 Cobertura · 19 Apartamento — faixa R$ 1.2M – R$ 15.9M</p>
+      <p class="count">Sentineli: <strong>54 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card ">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Rio Mar</h4>
+      <p class="desc">36 Casa · 1 Terreno — faixa R$ 2.0M – R$ 9.0M</p>
+      <p class="count">Sentineli: <strong>37 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card ">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Alphaville</h4>
+      <p class="desc">28 Casa · 8 Terreno — faixa R$ 1.0M – R$ 34.9M</p>
+      <p class="count">Sentineli: <strong>36 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card ">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Malibu</h4>
+      <p class="desc">24 Casa · 2 Terreno — faixa R$ 8.5M – R$ 32.0M</p>
+      <p class="count">Sentineli: <strong>26 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card ">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Mansões</h4>
+      <p class="desc">21 Casa · 3 Terreno — faixa R$ 5.9M – R$ 43.0M</p>
+      <p class="count">Sentineli: <strong>24 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card ">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Del Lago</h4>
+      <p class="desc">19 Casa — faixa R$ 6.9M – R$ 16.0M</p>
+      <p class="count">Sentineli: <strong>19 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card ">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Blue Houses</h4>
+      <p class="desc">19 Casa — faixa R$ 1.0M – R$ 8.5M</p>
+      <p class="count">Sentineli: <strong>19 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card ">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Interlagos de Itaúna</h4>
+      <p class="desc">18 Casa — faixa R$ 1.0M – R$ 5.5M</p>
+      <p class="count">Sentineli: <strong>18 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card ">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Pedra de Itaúna</h4>
+      <p class="desc">11 Casa · 6 Terreno — faixa R$ 4.2M – R$ 22.5M</p>
+      <p class="count">Sentineli: <strong>17 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card ">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Santa Mônica Jardins</h4>
+      <p class="desc">15 Casa · 2 Terreno — faixa R$ 4.5M – R$ 21.0M</p>
+      <p class="count">Sentineli: <strong>17 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card ">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Quintas do Rio</h4>
+      <p class="desc">13 Casa · 2 Terreno — faixa R$ 4.7M – R$ 12.9M</p>
+      <p class="count">Sentineli: <strong>15 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card ">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Crystal Lake</h4>
+      <p class="desc">12 Casa · 3 Terreno — faixa R$ 2.9M – R$ 8.0M</p>
+      <p class="count">Sentineli: <strong>15 imóveis ativos</strong></p>
+    </div>
+  </div>
+
+  <p style="font-size:0.85rem;color:#c62828;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">Recreio dos Bandeirantes</p>
+  <div class="shadow-grid" style="margin-bottom:40px;">
+    
+    <div class="shadow-card recreio">
+      <div class="nbhd">Recreio dos Bandeirantes</div>
+      <h4>Gleba B</h4>
+      <p class="desc">20 Cobertura · 20 Apartamento — faixa R$ 0.6M – R$ 15.0M</p>
+      <p class="count">Sentineli: <strong>46 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card recreio">
+      <div class="nbhd">Recreio dos Bandeirantes</div>
+      <h4>Gleba A</h4>
+      <p class="desc">23 Cobertura · 14 Apartamento — faixa R$ 0.7M – R$ 5.6M</p>
+      <p class="count">Sentineli: <strong>42 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card recreio">
+      <div class="nbhd">Recreio dos Bandeirantes</div>
+      <h4>Riviera Del Sol</h4>
+      <p class="desc">32 Casa · 4 Terreno — faixa R$ 1.3M – R$ 5.3M</p>
+      <p class="count">Sentineli: <strong>36 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card recreio">
+      <div class="nbhd">Recreio dos Bandeirantes</div>
+      <h4>Art Life</h4>
+      <p class="desc">16 Casa · 7 Terreno — faixa R$ 1.5M – R$ 4.4M</p>
+      <p class="count">Sentineli: <strong>23 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card recreio">
+      <div class="nbhd">Recreio dos Bandeirantes</div>
+      <h4>Villa Blanca II</h4>
+      <p class="desc">14 Terreno · 5 Casa — faixa R$ 0.5M – R$ 3.5M</p>
+      <p class="count">Sentineli: <strong>19 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card recreio">
+      <div class="nbhd">Recreio dos Bandeirantes</div>
+      <h4>Maramar</h4>
+      <p class="desc">17 Casa · 1 Terreno — faixa R$ 1.6M – R$ 7.9M</p>
+      <p class="count">Sentineli: <strong>18 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card recreio">
+      <div class="nbhd">Recreio dos Bandeirantes</div>
+      <h4>Villa Blanca I</h4>
+      <p class="desc">9 Terreno · 8 Casa — faixa R$ 0.7M – R$ 3.3M</p>
+      <p class="count">Sentineli: <strong>17 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card recreio">
+      <div class="nbhd">Recreio dos Bandeirantes</div>
+      <h4>Parque das Palmeiras</h4>
+      <p class="desc">13 Casa · 2 Terreno — faixa R$ 1.6M – R$ 5.2M</p>
+      <p class="count">Sentineli: <strong>15 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card recreio">
+      <div class="nbhd">Recreio dos Bandeirantes</div>
+      <h4>Jardins De Maria Residências</h4>
+      <p class="desc">5 Casa · 5 Terreno — faixa R$ 0.8M – R$ 4.2M</p>
+      <p class="count">Sentineli: <strong>10 imóveis ativos</strong></p>
+    </div>
+
+    <div class="shadow-card recreio">
+      <div class="nbhd">Recreio dos Bandeirantes</div>
+      <h4>Tangarás Recreio Prime</h4>
+      <p class="desc">9 Terreno · 1 Casa — faixa R$ 0.6M – R$ 2.8M</p>
+      <p class="count">Sentineli: <strong>10 imóveis ativos</strong></p>
+    </div>
+  </div>
+
+  <p style='font-size:0.85rem;color:#e65100;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;'>Presença em Múltiplos Territórios</p><div class='shadow-grid'>
+    <div class="shadow-card mista">
+      <div class="nbhd">Barra da Tijuca</div>
+      <h4>Tangarás Seleto</h4>
+      <p class="desc">9 Terreno — faixa R$ 0.8M – R$ 1.6M</p>
+      <p class="count">Sentineli: <strong>9 imóveis ativos</strong></p>
+    </div></div>
+</div>
+</div>
+
+<div class="sec-dark sec">
+<div class="wrap">
+  <div class="sec-label">Vantagem Estratégica</div>
+  <div class="sec-title" style="color:var(--white);">O Recreio ainda é <span>território Muller</span></div>
+  <p class="sec-desc">
+    A Sentineli tem 397 imóveis no Recreio, mas a maioria é de baixo ticket. No segmento R$1,5M+ — que é o core da Muller — há 225 imóveis concorrentes. Isso significa espaço real, mas atenção necessária.
+  </p>
+  <div class="opp-grid">
+    <div class="opp-card">
+      <div class="opp-num">01</div>
+      <h4>Condomínios desguarnecidos no Recreio</h4>
+      <p>A Sentineli está concentrada em Gleba A, Gleba B, Riviera Del Sol e Art Life. Os demais condomínios do Recreio têm pouca ou nenhuma presença concorrente — janela aberta para captação exclusiva.</p>
+    </div>
+    <div class="opp-card">
+      <div class="opp-num">02</div>
+      <h4>Jardim Oceânico — alerta Barra</h4>
+      <p>O condomínio mais ativo da Sentineli na Barra tem 55 imóveis anunciados sozinha. Se a Muller está crescendo na Barra, Jardim Oceânico precisa de estratégia específica de captação antes de chegar tarde.</p>
+    </div>
+    <div class="opp-card">
+      <div class="opp-num">03</div>
+      <h4>Ticket médio como diferencial</h4>
+      <p>No Recreio, o ticket médio da Sentineli acima de R$1,5M é de R$ 3.6M. A Muller opera em faixa similar. O argumento de diferenciação não pode ser preço — tem que ser relacionamento, exclusividade e velocidade de venda.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="sec-black sec">
+<div class="wrap">
+  <div class="sec-label">Próximo Nível</div>
+  <div class="sec-title" style="color:var(--white); margin-bottom:48px;">O que <span>inteligência artificial</span><br>pode mudar na operação da Muller</div>
+  <div class="ia-box">
+    <div class="eyebrow">Da análise à vantagem competitiva permanente</div>
+    <h3>Transformar dados públicos em decisões comerciais antes que os concorrentes percebam</h3>
+    <p>
+      Este relatório foi construído com raspagem real de 2.978 imóveis. Com IA integrada à operação, esse processo roda toda semana automaticamente — alertando a equipe quando um novo condomínio entra no radar dos rivais.
+    </p>
+    <div class="ia-items">
+      <div class="ia-item">
+        <strong>Radar competitivo automático</strong>
+        <span>Monitorar os portfólios da Sentineli e Judice toda semana — alertar quando um condomínio novo entrar, quando um imóvel for retirado ou quando o preço mudar</span>
+      </div>
+      <div class="ia-item">
+        <strong>Mapa de oportunidades atualizado</strong>
+        <span>Condomínios com brechas de cobertura ranqueados por ticket médio e volume histórico — para o corretor saber exatamente onde agir primeiro</span>
+      </div>
+      <div class="ia-item">
+        <strong>Dossiê de conta por condomínio</strong>
+        <span>Antes de abordar um síndico, o corretor recebe um briefing completo: imóveis ativos dos concorrentes, preço médio por m², histórico de vendas e o melhor argumento</span>
+      </div>
+      <div class="ia-item">
+        <strong>Inteligência de precificação</strong>
+        <span>Comparar imóveis similares nos condomínios concorrentes em tempo real — dando ao corretor o argumento mais preciso na hora de fechar o valor de captação</span>
+      </div>
+      <div class="ia-item">
+        <strong>Alerta de movimentação</strong>
+        <span>Detectar quando a Sentineli ou Judice começa a aumentar presença em um condomínio específico — antes que consolidem posição e fechem exclusividade</span>
+      </div>
+      <div class="ia-item">
+        <strong>Integração Kommo</strong>
+        <span>Cruzar o portfólio interno da Muller com os dados dos concorrentes — identificando onde a Muller tem vantagem real e onde está em desvantagem</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Muller Imóveis RJ</div>
+  <div class="footer-note">
+    Análise elaborada por Reinaldo Machado Donadio · Consultoria Estratégica<br>
+    Raspagem real: 1.420 imóveis Sentineli + 1.558 imóveis Judice — Abril 2026<br>
+    <span style="font-size:0.68rem;color:#444;">* Dados coletados diretamente das APIs públicas dos sites concorrentes via scraping automatizado.</span>
+  </div>
+</footer>
+
+</body>
+</html>
